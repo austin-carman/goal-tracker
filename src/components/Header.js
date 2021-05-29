@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
 
+
+// should show login, contact, home before signing in
+// after sign-in should show profile, sign-out, not login
+
     return(
         <header className='navbar'>
             <nav>
