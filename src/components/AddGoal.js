@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import GoalList from './GoalList';
 
 const initialGoals = {
     goal: '',
@@ -9,14 +8,15 @@ const initialGoals = {
 const AddGoal = () => {
     const { push } = useHistory();
     const [ goals, setGoals ] = useState(initialGoals);
-
-
+    
+    
     const handleChange = (e) => {
         const { name, value } = e.target;
         setGoals({...goals, [name]:value});
     };
-
+    
     const handleSave = () => {
+        // will need axios.post to create new goal for user
         setGoals(initialGoals);
         push('/profile');
     };

@@ -1,5 +1,8 @@
 import React from 'react';
 
+
+// will need goals to be passed in from goal list component
+
 const Goal = () => {
 
     return(
