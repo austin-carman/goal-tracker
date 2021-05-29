@@ -1,3 +1,5 @@
+// needs state for all existing goals
+
 import React from 'react';
 import Goal from './Goal';
 
