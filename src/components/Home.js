@@ -1,12 +1,19 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Home = () => {
+    const { push } = useHistory()
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        push('/login');
+    }
 
     return(
         <div className='home'>
             <header className='hero-img'>
                 <h1>Goal Tracker App</h1>
-                <button>Create Goals</button>
+                <button onClick={handleClick}>Create Goals</button>
             </header>
             <section>
                 <h2>about app</h2>
