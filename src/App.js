@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Profile from './components/Profile';
 import AddGoal from './components/AddGoal';
+import Register from './components/Register';
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
       <Switch>
         <Route path='/login'>
           <Login />
+        </Route>
+
+        <Route path='/register'>
+          <Register />
         </Route>
 
         <Route path='/add-goal'>

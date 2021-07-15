@@ -3,16 +3,13 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-
-const initialState = {
-    username: '',
-    password: '',
-};
-
-
 // will need axios.post to verify user
 
 const Login = () => {
+    const initialState = {
+        username: '',
+        password: '',
+    };
     const { push } = useHistory();
     const [formLogin, setFormLogin] = useState(initialState);
 
@@ -33,8 +30,7 @@ const Login = () => {
 
     return(
         <div>
-            <h2>Goal Tracker</h2>
-            <h3>Sign-In</h3>
+            <h2>Sign-In</h2>
                 <input 
                     type='text'
                     name='username'
