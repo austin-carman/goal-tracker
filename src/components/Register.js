@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const Register = () => {
     const initialState = {
@@ -19,6 +20,13 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        axios.post('https://goalsetting.herokuapp.com/', formRegister)
+            .then(res => {
+                console.log('res', res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
         setFormRegister(initialState);
         push('/login');
     }
