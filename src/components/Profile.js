@@ -11,7 +11,7 @@ const Profile = () => {
     return(
         <div>
             <h2>Welcome Back Username!</h2>
-            <button onClick={handleAddGoal}>Add Goal</button>
+            <button onClick={handleAddGoal}>New Goal</button>
             <GoalList />
         </div>
     );

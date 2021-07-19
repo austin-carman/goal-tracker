@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const initialGoals = {
-    goal: '',
+    title: '',
+    // add more (steps, etc)????
 }
 
 const AddGoal = () => {
     const { push } = useHistory();
-    const [ goals, setGoals ] = useState(initialGoals);
+    const [ goal, setGoal ] = useState(initialGoals);
     
     
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setGoals({...goals, [name]:value});
+        setGoal({...goal, [name]:value});
     };
     
     const handleSave = () => {
-        // will need axios.post to create new goal for user
-        setGoals(initialGoals);
+        axios.post('URL/endpoint', ) // use correct endpoint for adding goal/steps
+            .then()
+            .catch(err => {
+                console.log(err);
+            })
+        setGoal(initialGoals);
         push('/profile');
     };
 
@@ -26,8 +32,8 @@ const AddGoal = () => {
             <h2>Add Goal</h2>
             <input
                 type='text'
-                name='goal'
-                value={goals.goal}
+                name='title'
+                value={goal.title}
                 onChange={handleChange}
             />
             <button onClick={handleSave}>Add</button>
