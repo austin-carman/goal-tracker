@@ -14,8 +14,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-
-    {/* should I be using switch?? */}
+          {/* should I be using switch?? */}
 
         <Route path='/login'>
           <Login />
@@ -37,7 +36,7 @@ function App() {
           <Home />
         </Route>
 
-      {/* <Footer /> */}
+      {/* <Footer /> Do I want to keep a footer?? */} 
     </div>
   );
 }

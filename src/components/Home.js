@@ -12,8 +12,8 @@ const Home = () => {
     return(
         <div className='home'>
             <header className='hero-img'>
-                <h1>Goal Tracker App</h1>
-                <button onClick={handleClick}>Achieve Your Goals</button>
+                <h1>Goal Tracker Title</h1>
+                <button onClick={handleClick}>Start New Goal</button>
             </header>
             <section>
                 <h2>All your goals in one place</h2>

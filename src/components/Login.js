@@ -3,14 +3,15 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 // need to add validation
-// will need axios.post to verify user
 
 const Login = () => {
+    const { push } = useHistory();
+    
     const initialState = {
         username: '',
         password: '',
     };
-    const { push } = useHistory();
+
     const [formLogin, setFormLogin] = useState(initialState);
 
 
