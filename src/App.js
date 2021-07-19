@@ -15,7 +15,8 @@ function App() {
     <div className="App">
       <Header />
 
-      <Switch>
+    {/* should I be using switch?? */}
+
         <Route path='/login'>
           <Login />
         </Route>
@@ -32,10 +33,9 @@ function App() {
           <Profile />
         </PrivateRoute>
 
-        <Route path='/'>
+        <Route exact path='/'>
           <Home />
         </Route>
-      </Switch>
 
       {/* <Footer /> */}
     </div>
