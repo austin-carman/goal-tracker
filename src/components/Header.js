@@ -15,7 +15,10 @@ const Header = () => {
                     <h2>Goal Tracker</h2>
                 </div>
                 <div className='nav-links'>
+                    <Link to='/register'>Register</Link>
                     <Link to='/login'>Sign In</Link>
+                    <Link to='/contact'>Contact</Link>
+                    <Link to='/profile'>Profile</Link>
                     <Link to='/'>Home</Link>
                 </div>
             </nav>

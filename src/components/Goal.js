@@ -1,7 +1,5 @@
 import React from 'react';
-
-
-// will need goals to be passed in from goal list component
+import axios from 'axios';
 
 const Goal = () => {
 

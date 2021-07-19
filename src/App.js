@@ -7,6 +7,8 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Profile from './components/Profile';
 import AddGoal from './components/AddGoal';
+import Register from './components/Register';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -18,13 +20,17 @@ function App() {
           <Login />
         </Route>
 
+        <Route path='/register'>
+          <Register />
+        </Route>
+
         <Route path='/add-goal'>
           <AddGoal />
         </Route>
 
-        <Route path='/profile'>
+        <PrivateRoute path='/profile'>
           <Profile />
-        </Route>
+        </PrivateRoute>
 
         <Route path='/'>
           <Home />

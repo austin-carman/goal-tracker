@@ -1,16 +1,17 @@
 import React from 'react';
 import GoalList from './GoalList';
-import Progress from './Progress';
-
-
-// ? do api call here and prop drill vs api call in components where data is needed
-
+import { useHistory } from 'react-router-dom';
 
 const Profile = () => {
+    const { push } = useHistory();
+    const handleAddGoal = () => {
+        push('/add-goal');
+    }
+
     return(
         <div>
-            <h2>Profile</h2>
-            <Progress />
+            <h2>Welcome Back Username!</h2>
+            <button onClick={handleAddGoal}>Add Goal</button>
             <GoalList />
         </div>
     );
