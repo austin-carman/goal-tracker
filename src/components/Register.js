@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 const Register = () => {
     const initialState = {
@@ -25,22 +25,26 @@ const Register = () => {
 
     return(
         <div>
-            <h2>Create Your Account</h2>
-                <input 
-                    type='text'
-                    name='username'
-                    value={formRegister.username}
-                    onChange={handleChange}
-                    placeholder='username'
-                />
-
-                <input
-                    type='text'
-                    name='password'
-                    value={formRegister.password}
-                    onChange={handleChange}
-                    placeholder='password'
-                />
+            <h2>Start Achieving Your Goals Today!</h2>
+            <h3>Create Your Account</h3>
+            <div>
+                <p>Already have an account?</p>
+                <Link to='/login'>Login</Link>
+            </div>
+            <input 
+                type='text'
+                name='username'
+                value={formRegister.username}
+                onChange={handleChange}
+                placeholder='username'
+            />
+            <input
+                type='text'
+                name='password'
+                value={formRegister.password}
+                onChange={handleChange}
+                placeholder='password'
+            />
             <button onClick={handleSubmit}>Register</button>
         </div>
     )

@@ -2,24 +2,13 @@
 
 import React from 'react';
 import Goal from './Goal';
-import { useHistory } from 'react-router-dom';
-
-
-
+import axios from 'axios';
 
 const GoalList = () => {
-    const { push } = useHistory();
     
-    // will need axios.get to fetch user's goals and render goal cards
-    
-    const handleAddGoal = () => {
-        push('/add-goal');
-    }
-
     return(
         <div>
-            <h2>GoalList</h2>
-            <button onClick={handleAddGoal}>Add Goal</button>
+            <h2>My Goals</h2>
             <Goal />
         </div>
     );

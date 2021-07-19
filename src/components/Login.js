@@ -1,8 +1,8 @@
-// need to add validation
-
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
+// need to add validation
 // will need axios.post to verify user
 
 const Login = () => {
@@ -24,6 +24,13 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        axios.post('https://goalsetting.herokuapp.com/api/auth/login', formLogin)
+            .then(res => {
+                console.log('res', res);
+            })
+            .catch(err => {
+                console.log(err);
+            })
         setFormLogin(initialState);
         push('/profile');
     }
