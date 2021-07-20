@@ -23,7 +23,7 @@ function App() {
         <Route path='/register'>
           <Register />
         </Route>
-        <Route path='/details'>
+        <Route path='/details/:goal_id'>
           <GoalDetails />
         </Route>
         <Route path='/add-goal'>
