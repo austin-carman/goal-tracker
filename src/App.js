@@ -9,32 +9,31 @@ import Profile from './components/Profile';
 import AddGoal from './components/AddGoal';
 import Register from './components/Register';
 import PrivateRoute from './components/PrivateRoute';
+import GoalDetails from './components/GoalDetails';
 
 function App() {
   return (
     <div className="App">
       <Header />
           {/* should I be using switch?? */}
-
+      <Switch>
         <Route path='/login'>
           <Login />
         </Route>
-
         <Route path='/register'>
           <Register />
         </Route>
-
+        <Route path='/details'>
+          <GoalDetails />
+        </Route>
         <Route path='/add-goal'>
           <AddGoal />
         </Route>
-
-        <PrivateRoute path='/profile'>
-          <Profile />
-        </PrivateRoute>
-
+        <PrivateRoute path='/profile'  component={Profile} />
         <Route exact path='/'>
           <Home />
         </Route>
+      </Switch>
 
       {/* <Footer /> Do I want to keep a footer?? */} 
     </div>

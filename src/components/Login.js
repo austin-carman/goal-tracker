@@ -5,16 +5,15 @@ import axios from 'axios';
 // need to add validation
 
 const Login = () => {
+    const initialState = {
+        user_username: '',
+        user_password: '',
+    };
+    
+    const [formLogin, setFormLogin] = useState(initialState);
+    
     const { push } = useHistory();
     
-    const initialState = {
-        username: '',
-        password: '',
-    };
-
-    const [formLogin, setFormLogin] = useState(initialState);
-
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormLogin({
@@ -27,13 +26,15 @@ const Login = () => {
         e.preventDefault();
         axios.post('https://goalsetting.herokuapp.com/api/auth/login', formLogin)
             .then(res => {
-                console.log('res', res);
+                localStorage.setItem('token', res.data.token)
+                localStorage.setItem('user', res.data.username)
+                localStorage.setItem('userId', res.data.userId)
+                push('/profile');
             })
             .catch(err => {
                 console.log(err);
             })
         setFormLogin(initialState);
-        push('/profile');
     }
 
     return(
@@ -41,16 +42,16 @@ const Login = () => {
             <h2>Sign-In</h2>
                 <input 
                     type='text'
-                    name='username'
-                    value={formLogin.username}
+                    name='user_username'
+                    value={formLogin.user_username}
                     onChange={handleChange}
                     placeholder='username'
                 />
 
                 <input
                     type='text'
-                    name='password'
-                    value={formLogin.password}
+                    name='user_password'
+                    value={formLogin.user_password}
                     onChange={handleChange}
                     placeholder='password'
                 />

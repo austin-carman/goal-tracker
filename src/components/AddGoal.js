@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const initialGoals = {
-    title: '',
-    // add more (steps, etc)????
+    title: ''
 }
 
 const AddGoal = () => {
-    const { push } = useHistory();
     const [ goal, setGoal ] = useState(initialGoals);
     
+    const { push } = useHistory();
+    const userId = localStorage.getItem('userId')
     
     const handleChange = (e) => {
         const { name, value } = e.target;
         setGoal({...goal, [name]:value});
     };
-    
+
     const handleSave = () => {
-        axios.post('URL/endpoint', ) // use correct endpoint for adding goal/steps
-            .then()
+        axiosWithAuth()
+            .post(`https://goalsetting.herokuapp.com/api/goals/new/${userId}`, goal)
+            .then(res => {
+                setGoal(res.data)
+            })
             .catch(err => {
                 console.log(err);
             })

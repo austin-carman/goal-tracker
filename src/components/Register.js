@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Register = () => {
     const initialState = {
-        username: '',
-        password: '',
+        user_username: '',
+        user_password: '',
     };
     const { push } = useHistory();
     const [formRegister, setFormRegister] = useState(initialState);
@@ -18,9 +19,15 @@ const Register = () => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault(); 
+        axios.post('https://goalsetting.herokuapp.com/api/auth/register', formRegister)
+            .then(res => {
+                push('/login');
+            })
+            .catch(err => {
+                console.log(err);
+            })
         setFormRegister(initialState);
-        push('/login');
     }
 
     return(
@@ -33,15 +40,15 @@ const Register = () => {
             </div>
             <input 
                 type='text'
-                name='username'
-                value={formRegister.username}
+                name='user_username'
+                value={formRegister.user_username}
                 onChange={handleChange}
                 placeholder='username'
             />
             <input
                 type='text'
-                name='password'
-                value={formRegister.password}
+                name='user_password'
+                value={formRegister.user_password}
                 onChange={handleChange}
                 placeholder='password'
             />

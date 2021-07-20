@@ -1,14 +1,27 @@
 import React from 'react';
-import axios from 'axios';
+import { useHistory , useParams } from 'react-router-dom';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const Goal = (props) => {
     const { goal } = props;
 
+    // const { push } = useHistory();
+    // const { id } = useParams();
+
+    // const handleClick = (e) => {
+    //     push('/details')
+    // }
+
     return(
         <div>
-            <h2>{goal.title}</h2>
-            <p>other goal details here</p> {/* add more goal details to be displayed */}
-            {/* button/onclick for view all details */}
+            <h2>{goal.goal_title}</h2>
+            {
+                goal.percentage_completed ? <h3>{goal.percentage_completed}</h3> : <h3>0%</h3>
+            }
+            <button onClick={handleClick}>View details/edit</button>
+            <button>Delete Goal</button>
+            <p>Likes:</p>
+            <p>Comments:</p>
         </div>
     );
 };
