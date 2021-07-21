@@ -8,7 +8,6 @@ const initialGoals = {
 
 const AddGoal = () => {
     const [ goal, setGoal ] = useState(initialGoals);
-    
     const { push } = useHistory();
     const userId = localStorage.getItem('userId')
     
@@ -17,29 +16,28 @@ const AddGoal = () => {
         setGoal({...goal, [name]:value});
     };
 
-    const handleSave = () => {
-        axiosWithAuth()
-            .post(`https://goalsetting.herokuapp.com/api/goals/new/${userId}`, goal)
-            .then(res => {
-                setGoal(res.data)
-            })
-            .catch(err => {
-                console.log(err);
-            })
-        setGoal(initialGoals);
-        push('/profile');
+    const handleSave = async () => {
+        try {
+            const response = await axiosWithAuth()
+                .post(`https://goalsetting.herokuapp.com/api/goals/new/${userId}`, goal)
+            setGoal(response.data)
+            push(`/add-step/${response.data.goal_id}`);
+            return response.data;
+        } catch(err) {
+            console.log(err);
+        }
     };
 
     return(
         <div>
-            <h2>Add Goal</h2>
+            <h2>New Goal</h2>
             <input
                 type='text'
                 name='title'
                 value={goal.title}
                 onChange={handleChange}
             />
-            <button onClick={handleSave}>Add</button>
+            <button onClick={handleSave}>Add steps</button>
         </div>
     );
 };

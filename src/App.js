@@ -10,6 +10,7 @@ import AddGoal from './components/AddGoal';
 import Register from './components/Register';
 import PrivateRoute from './components/PrivateRoute';
 import GoalDetails from './components/GoalDetails';
+import AddSteps from './components/AddSteps';
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
         </Route>
         <Route path='/add-goal'>
           <AddGoal />
+        </Route>
+        <Route path='/add-step/:goal_id'>
+          <AddSteps />
         </Route>
         <PrivateRoute path='/profile'  component={Profile} />
         <Route exact path='/'>
