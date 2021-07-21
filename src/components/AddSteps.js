@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const AddSteps = () => {
@@ -11,29 +12,33 @@ const AddSteps = () => {
         step_text: '',
     }
 
-    const [ step, setSteps ] = useState(initialStep);
+    const [ step, setStep ] = useState(initialStep);
+    const [steps, setSteps] = useState([])
 
-    let steps = [];
+    const { push } = useHistory();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setSteps({...step, [name]: value});
+        setStep({...step, [name]: value});
     }
 
-    const handleSave = (e) => {
-        e.preventDefault();
-        axiosWithAuth()
-            .post(`https://goalsetting.herokuapp.com/api/goals/add-step/${goal_id}`, step)
-            .then(res => {
-                steps.push(res.data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
+    const handleAddStep = async () => {
+        try {
+            const response = await axiosWithAuth()
+                .post(`https://goalsetting.herokuapp.com/api/goals/add-step/${goal_id}`, step)
+            const newStep = response.data;
+            newStep.status && console.log(newStep);
+            newStep.step_id && setSteps([...steps, newStep])
+        } catch(err) {
+            console.log(err);
+        }
     }
 
-    console.log('steps', steps);
-
+    const handleDone = () => {
+        push('/profile');
+    }
+    
+    console.log(steps);
     return(
         <div>
             <h2>Steps</h2>
@@ -49,8 +54,17 @@ const AddSteps = () => {
                 value={step.step_text}
                 onChange={handleChange}
             />
-            <button onClick={handleSave}>Add steps</button>
-            {}
+            <button onClick={handleAddStep}>Add step</button>
+            {
+                steps.map(item => {
+                    return(
+                        <div>
+                            <p>{item.step_number}. {item.step_text}</p>
+                        </div>
+                    )
+                })
+            }
+            <button onClick={handleDone}>Done</button>
         </div>
     )
 }

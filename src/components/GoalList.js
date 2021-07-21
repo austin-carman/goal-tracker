@@ -15,7 +15,7 @@ const GoalList = () => {
             .catch(err => {
                 console.log(err);
             })
-    }, []);
+    }, [goals]);
 
     return(
         <div>

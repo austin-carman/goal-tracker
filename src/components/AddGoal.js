@@ -37,7 +37,7 @@ const AddGoal = () => {
                 value={goal.title}
                 onChange={handleChange}
             />
-            <button onClick={handleSave}>Add steps</button>
+            <button onClick={handleSave}>Next</button>
         </div>
     );
 };
