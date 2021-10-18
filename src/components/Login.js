@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-// need to add validation
-
 const Login = () => {
     const initialState = {
         user_username: '',

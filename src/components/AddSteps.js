@@ -8,12 +8,12 @@ const AddSteps = () => {
 
     const initialStep = {
         goal_id: goal_id,
-        step_number: '',
+        step_number: 1,
         step_text: '',
     }
 
-    const [ step, setStep ] = useState(initialStep);
-    const [steps, setSteps] = useState([])
+    const [step, setStep] = useState(initialStep);
+    const [existingSteps, setExistingSteps] = useState([])
 
     const { push } = useHistory();
 
@@ -21,14 +21,16 @@ const AddSteps = () => {
         const { name, value } = e.target;
         setStep({...step, [name]: value});
     }
-
+    
     const handleAddStep = async () => {
+        setStep({...step, step_number: step.step_number + 1})
         try {
             const response = await axiosWithAuth()
                 .post(`https://goalsetting.herokuapp.com/api/goals/add-step/${goal_id}`, step)
             const newStep = response.data;
+            console.log('newStep', newStep);
             newStep.status && console.log(newStep);
-            newStep.step_id && setSteps([...steps, newStep])
+            newStep.step_id && setExistingSteps([...existingSteps, newStep])
         } catch(err) {
             console.log(err);
         }
@@ -38,16 +40,9 @@ const AddSteps = () => {
         push('/profile');
     }
     
-    console.log(steps);
     return(
         <div>
             <h2>Steps</h2>
-            <input
-                type='text'
-                name='step_number'
-                value={step.step_number}
-                onChange={handleChange}
-            />
             <input
                 type='text'
                 name='step_text'
@@ -56,7 +51,7 @@ const AddSteps = () => {
             />
             <button onClick={handleAddStep}>Add step</button>
             {
-                steps.map(item => {
+                existingSteps.map(item => {
                     return(
                         <div>
                             <p>{item.step_number}. {item.step_text}</p>

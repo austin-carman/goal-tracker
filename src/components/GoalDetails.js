@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import EditGoal from './EditGoal';
 
 const GoalDetails = () => {
-    const [ goal, setGoal ] = useState({});
+    const [goal, setGoal] = useState({});
+    const [toggleEdit, setToggleEdit] = useState(false);
+    const [completed, setCompleted] = useState(false);
 
     const { goal_id } = useParams();
 
@@ -16,26 +19,37 @@ const GoalDetails = () => {
             .catch(err => {
                 console.log(err);
             })
-    }, [goal_id])
+    }, [])
 
-    console.log(goal.steps);
+    const handleEditGoal = () => {
+        setToggleEdit(true);
+    }
 
     return(
         <div>
-            <h2>{goal.goal_title}</h2>
-            <h2>{goal.percentage_completed}</h2>
-            {/* {
-                goal.steps.map(step => {
-                    return(
-                        <div>
-                            <h2>Steps</h2>
-                            <p>{step.step_number}</p>
-                            <p>{step.step_text}</p>
-                            <p>{step.completed}</p>
-                        </div>
-                    )
-                })
-            } */}
+            {
+                toggleEdit ? <EditGoal goal={goal} setGoal={setGoal} setToggleEdit={setToggleEdit} />
+                :
+                <div>
+                    <h2>{goal.goal_title}</h2>
+                    <button onClick={handleEditGoal}>Edit Goal</button>
+                    <h2>{goal.percentage_completed}</h2>
+                    <h4>Steps</h4>
+                    {   
+                        goal.steps && goal.steps.map(step => {
+                            return(
+                                <div key={step.step_id}>
+                                    <p>{step.completed}</p>
+                                    <p>Completed: {completed}</p>
+                                    <p>{step.step_number}. {step.step_text}</p>
+                                    {/* <button onClick={handleEditStep}>Edit Step</button> */}
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            }
+
         </div>
     )
 }

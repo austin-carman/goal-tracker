@@ -19,11 +19,11 @@ const GoalList = () => {
 
     return(
         <div>
-            <h2>My Goals</h2>
             {
-                goals.map(goal => {
-                    return <Goal key={goal.goal_id} goal={goal} />
-                })
+                goals.length > 0 &&
+                    goals.map(goal => {
+                        return <Goal key={goal.goal_id} goal={goal} />
+                    })
             }
         </div>
     );

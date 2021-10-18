@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Header from './components/Header';
+import Navbar from './components/Navbar';
 // import Footer from './components/Footer';
 import Home from './components/Home';
 import Login from './components/Login';
@@ -11,12 +11,13 @@ import Register from './components/Register';
 import PrivateRoute from './components/PrivateRoute';
 import GoalDetails from './components/GoalDetails';
 import AddSteps from './components/AddSteps';
+import EditGoal from './components/EditGoal';
+// import EditStep from './components/EditStep';
 
 function App() {
   return (
     <div className="App">
-      <Header />
-          {/* should I be using switch?? */}
+      <Navbar />
       <Switch>
         <Route path='/login'>
           <Login />
@@ -24,7 +25,7 @@ function App() {
         <Route path='/register'>
           <Register />
         </Route>
-        <Route path='/details/:goal_id'>
+        {/* <Route path='/details/:goal_id'>
           <GoalDetails />
         </Route>
         <Route path='/add-goal'>
@@ -33,7 +34,13 @@ function App() {
         <Route path='/add-step/:goal_id'>
           <AddSteps />
         </Route>
-        <PrivateRoute path='/profile'  component={Profile} />
+        <Route path='/edit-goal/:goal_id'>
+          <EditGoal />
+        </Route> */}
+        {/* <Route path='/edit-step/:step_id'>
+          <EditStep />
+        </Route> */}
+        {/* <PrivateRoute path='/profile'  component={Profile} /> */}
         <Route exact path='/'>
           <Home />
         </Route>
